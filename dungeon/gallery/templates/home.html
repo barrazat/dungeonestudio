@@ -4,4 +4,18 @@
 
 {% block body %}
     <h2>Welcome</h2>
+
+    {% for s in songs %}
+    <div class="producto">
+        <div class="contenedor_producto">
+            {% if s.cover_art %}
+            <img src="{{ s.cover_art.url }}" alt="imagen producto">
+            {% endif %}
+            <div class="detalle">
+                <h5>{{ s.name | capfirst }}</h5>
+                <h2>{{ s.url | title }}</h2>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
 {% endblock %}
