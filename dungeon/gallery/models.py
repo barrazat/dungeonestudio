@@ -25,13 +25,15 @@ def year_choices():
 class Song(models.Model):
 
     CHOICES_GENRE = (
-    (0, "Trap"),
-    (1, "R&B"),
-    (2, "Cyber"),
-    (3, "Reggaeton"),
-    (4, "Drill"),
-    (5, "Plugg"),
-    (6, "Pluggnb"))
+        (0, "Trap"),
+        (1, "R&B"),
+        (2, "Cyber"),
+        (3, "Reggaeton"),
+        (4, "Drill"),
+        (5, "Plugg"),
+        (6, "Pluggnb"),
+        (7, "Hard")
+    )
     
     id_song = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
@@ -46,3 +48,29 @@ class Song(models.Model):
 
     def __str__(self):
         return self.name + ' - ' + self.id_artist.name
+    
+class Album(models.Model):
+
+    CHOICES_TYPE = (
+        (0, "EP"),
+        (1, "Álbum"),
+        (2, "LP")
+    )
+    id_album = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=250)
+    album_type = models.IntegerField(choices=CHOICES_TYPE)
+    url = models.URLField()
+
+    def __str__(self):
+        return self.name
+    
+    def get_album_type_display(self):
+        return dict(self.CHOICES_TYPE)[self.album_type]
+    
+class Tracklist(models.Model):
+    id_tracklist = models.AutoField(primary_key=True)
+    id_album = models.ForeignKey('Album', on_delete=models.CASCADE)
+    id_song = models.OneToOneField('Song', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id_album.name + ' - ' + self.id_song.name + ' - ' + self.id_song.id_artist.name

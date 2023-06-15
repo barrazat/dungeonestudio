@@ -17,23 +17,30 @@ pip install -r requirements.txt
 # Usefull Commands
 
 ## Starting
+``` bash
 python manage.py runserver
-
+```
 ## Create APP
+``` bash
 python manage.py startapp "Name"
-
+```
 ## Create Superuser
+``` bash
 python manage.py createsuperuser
-
+```
 ## Migrations 
+``` bash
 python manage.py makemigrations
 
 python manage.py migrate
-
+```
 ## Migrate Data
+``` bash
 python manage.py dumpdata > db.json
 
 python manage.py loaddata db.json
-
+```
 ## Show what is installed in the virtual environment
+``` bash
 pip freeze --local
+```
