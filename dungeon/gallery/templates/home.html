@@ -6,15 +6,15 @@
     <h2>Welcome</h2>
 
 
-    {% for a in tracklist %}
-    <div class="tracklist">
-        <div class="contenedr">
-
-            <div class="lsita">
-                <h5>{{ a.id_album.name | capfirst }}</h5>
-                <h2>{{ a.id_album.get_album_type_display}}</h2>
-                <h2>{{ a.id_album.url | title }}</h2>
-                <h2>{{ a.id_song.name | title }}</h2>
+    {% for s in songs %}
+    <div class="song">
+        <div class="contenedor_song">
+            {% if s.cover_art %}
+            <img src="{{ s.cover_art.url }}">
+            {% endif %}
+            <div class="detalle">
+                <h5>{{ s.name}}</h5>
+                <h2>{{ s.url }}</h2>
             </div>
         </div>
     </div>
