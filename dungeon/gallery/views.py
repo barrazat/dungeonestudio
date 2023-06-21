@@ -41,7 +41,7 @@ def create_album(request):
             messages.success(request, "Álbum guardado con exito.")
         else:
             data["form"] = formulario       
-    return render(request, 'song/create.html', data)
+    return render(request, 'album/create.html', data)
 
 @permission_required('dungeon.add_tracklist')
 def create_tracklist(request):
@@ -56,4 +56,4 @@ def create_tracklist(request):
             messages.success(request, "Tracklist guardado con exito.")
         else:
             data["form"] = formulario       
-    return render(request, 'song/create.html', data)
+    return render(request, 'tracklist/create.html', data)

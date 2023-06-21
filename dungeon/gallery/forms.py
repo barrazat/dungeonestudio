@@ -56,6 +56,12 @@ class TracklistForm(forms.ModelForm):
             'id_album': forms.Select(attrs={'size': 4}),
             'id_song': forms.Select(attrs={'size': 4})
         }
+        empty_label = {
+            'id_album': "Selecciona un álbum",
+            'id_song': "Selecciona una canción"
+        }
     def __init__(self, *args, **kwargs):
         super(TracklistForm, self).__init__(*args, **kwargs)
         self.fields['id_song'].queryset = Song.objects.filter(tracklist__isnull=True)
+        self.fields['id_song'].empty_label = "Selecciona una canción"
+        self.fields['id_album'].empty_label = "Selecciona un álbum"
