@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block tittle %}Agregar Álbum{% endblock %}
+
+
+{% block body %}
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <h2>Nuevo Álbum</h2>
+        <hr>
+        {{form}}
+        <div class="d-flex justify-content-end">
+            <hr>
+            <input type="reset" value="Cancelar" class="btn btn-secondary">
+            &nbsp;
+            <input type="submit" value="Guardar" class="btn btn-primary">
+        </div>
+    </form>
+
+{% endblock %}

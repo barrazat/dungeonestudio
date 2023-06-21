@@ -19,9 +19,6 @@ def max_value_current_year(value):
 def year_choices():
     return [(r,r) for r in range(2018, datetime.date.today().year+1)]
 
-#class MyForm(forms.ModelForm):
-    year = forms.TypedChoiceField(coerce=int, choices=year_choices, initial=current_year)
-
 class Song(models.Model):
 
     CHOICES_GENRE = (
