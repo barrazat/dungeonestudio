@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block tittle %}Lista de canciones{% endblock %}
+
+
+{% block body %}
+
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Canciones</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombre</th>
+                <th>Artista</th>
+                <th>Beat</th>
+                <th>Mix</th>
+                <th>Master</th>
+                <th>Año</th>
+                <th>Género</th>
+                <th>Opciones</th>
+            </tr>
+            {% for s in entity %}
+            <tr>
+                <td>{{ s.name }}</td>
+                <td>{{ s.id_artist }}</td>
+                <td>{{ s.beat }}</td>
+                <td>{{ s.mix }}</td>
+                <td>{{ s.master }}</td>
+                <td>{{ s.release_date }}</td>
+                <td>{{ s.get_genre_display }}</td>
+                <td>
+                    {% if perms.dungeon.change_artist %}
+                    <a href=" class="btn btn-primary btn-sm">Modificar</a>
+                    {% endif %}
+                    {% if perms.dungeon.delete_artist %}
+                    <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <div>
+            {% include 'paginator.html' %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

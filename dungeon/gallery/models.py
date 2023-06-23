@@ -46,6 +46,9 @@ class Song(models.Model):
     def __str__(self):
         return self.name + ' - ' + self.id_artist.name
     
+    def get_genre_display(self):
+        return dict(self.CHOICES_GENRE)[self.genre]
+    
 class Album(models.Model):
 
     CHOICES_TYPE = (

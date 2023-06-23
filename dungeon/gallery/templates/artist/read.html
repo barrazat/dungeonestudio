@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% load static %}
+{% block tittle %}Lista de artistas{% endblock %}
+
+
+{% block body %}
+
+<div class="card">
+    <div class="card-body">
+        <h2>Listado de Artistas</h2>
+        <hr>
+        <table class="table table-striped table-hover table-responsive-sm">
+            <tr>
+                <th>Nombre</th>
+                <th>url</th>
+                <th>Opciones</th>
+            </tr>
+            {% for a in entity %}
+            <tr>
+                <td>{{ a.name}}</td>
+                <td>${{ a.url}}</td>
+                <td>
+                    {% if perms.dungeon.change_artist %}
+                    <a href=" class="btn btn-primary btn-sm">Modificar</a>
+                    {% endif %}
+                    {% if perms.dungeon.delete_artist %}
+                    <a href="#" class="btn btn-danger btn-sm">Eliminar</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+        <hr>
+        <div>
+            {% include 'paginator.html' %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
